@@ -9,4 +9,6 @@ userRoutes.get('/', userController.getAll);
 
 userRoutes.post('/', userController.post);
 
+userRoutes.post('/login', userController.login);
+
 export { userRoutes };

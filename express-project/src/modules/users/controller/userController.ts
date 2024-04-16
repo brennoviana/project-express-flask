@@ -48,6 +48,22 @@ class UserController {
             res.status(400).send({ Error: "Erro ao criar o usuário, verifique os dados fornecidos." });
         }
     }
+
+    async login(req: Request, res: Response): Promise<Response | void> {
+        try {
+            const { username, password } = req.body;
+            const user = await userRepository.findLogin(username, password);
+
+            if (!user) {
+                return res.status(401).send({ message: "Usuário ou senha incorretos." });
+            }
+
+            res.status(200).send(user);
+        } catch (error) {
+            console.error(error);
+            res.status(500).send({ Error: "Erro interno do servidor, tente novamente." });
+        }
+    }
 }
 
 export const userController = new UserController();

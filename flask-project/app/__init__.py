@@ -2,6 +2,7 @@ from flask import Flask
 from app.config import Config
 from app.database import db
 from app.models import movieModel
+from app.filters import register_filters
 
 def create_app():
     app = Flask(__name__)
@@ -15,4 +16,6 @@ def create_app():
     with app.app_context():
         db.create_all() 
 
+    register_filters(app)
+    
     return app

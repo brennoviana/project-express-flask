@@ -5,6 +5,16 @@ from flask import Flask, request, jsonify
 
 movie = Blueprint('movie', __name__)
 
+from flask import render_template
+
+@movie.route('/', methods=['GET'])
+def main_movie():
+    movies, status = MovieController.get_all_movies()
+    if status == 200:
+        return render_template('index.html', movies=movies)
+    else:
+        return render_template('index.html', error="Falha ao carregar filmes.")
+
 
 @movie.route('/getAll', methods=['GET'])
 def list_movies():

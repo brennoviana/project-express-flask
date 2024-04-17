@@ -13,14 +13,19 @@
         }
         .container {
             width: 80%;
-            margin: auto;
+            margin: 20px auto;
             overflow: hidden;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
         }
         header {
             background-color: #4CAF50;
             color: #fff;
             padding: 10px 0;
             text-align: center;
+            border-radius: 5px 5px 0 0;
         }
         ul {
             list-style: none;
@@ -31,6 +36,21 @@
             padding: 10px;
             margin-bottom: 5px;
             border-radius: 5px;
+            border-left: 5px solid #4CAF50;
+        }
+        .movie-title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .movie-info {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.5;
+        }
+        .movie-meta {
+            font-size: 14px;
+            color: #999;
+            margin-top: 5px;
         }
     </style>
 </head>
@@ -40,11 +60,21 @@
     </header>
     <div class="container">
         <ul>
-            <li>Os Vingadores</li>
-            <li>O Senhor dos Anéis</li>
-            <li>Matrix</li>
-            <li>Inception (A Origem)</li>
-            <li>Interstellar</li>
+            {% if movies %}
+                {% for movie in movies %}
+                    <li>
+                        <div class="movie-title">{{ movie.name }}</div>
+                        <p class="movie-info">{{ movie.description }}</p>
+                        <div class="movie-meta">
+                            Lançamento: {{ movie.release_date|formatdate }} |                            |
+                            Diretor: {{ movie.director }} |
+                            Gênero: {{ movie.genre }}
+                        </div>
+                    </li>
+                {% endfor %}
+            {% else %}
+                <li>Nenhum filme encontrado.</li>
+            {% endif %}
         </ul>
     </div>
 </body>

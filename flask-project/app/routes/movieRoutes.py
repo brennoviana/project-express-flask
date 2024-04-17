@@ -52,5 +52,5 @@ def add_movie():
 
 @movie.route('/delete/<int:movie_id>', methods=['DELETE'])
 def delete_movie(movie_id):
-    message, status = MovieController.delete_movie(movie_id)
+    message, status = MovieController.delete_movie(int(movie_id))
     return jsonify(message=message), status

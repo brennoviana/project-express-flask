@@ -30,6 +30,7 @@ form, .movie-item {
     border-radius: 5px;
 }
 
+input[type="date"],
 input[type="text"], button, a button {
     padding: 8px;
     margin: 5px;

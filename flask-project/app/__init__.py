@@ -10,7 +10,7 @@ def create_app():
     db.init_app(app)
 
     from .routes.movieRoutes import movies
-    app.register_blueprint(movies, url_prefix='/movies')
+    app.register_blueprint(movies, url_prefix='/movie')
 
     with app.app_context():
         db.create_all() 

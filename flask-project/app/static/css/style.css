@@ -85,3 +85,22 @@ ul li {
 #movie_id, button, a button {
     margin: 0px;
 }
+
+.alert {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    text-align: center;
+    color: #290101;
+}
+
+.alert-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.alert-error {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}

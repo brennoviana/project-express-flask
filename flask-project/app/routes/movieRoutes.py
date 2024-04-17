@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for
+from flask import Blueprint, render_template, redirect, url_for, flash
 from app.controllers.movieController import MovieController
 from flask import Flask, request, jsonify
 
@@ -46,12 +46,21 @@ def add_movie():
         genre=data.get('genre', None)
     )
 
+    if status == 201:
+        flash('success', 'Filme adicionado com sucesso!')  
+        return jsonify(message=result), status
+    flash('error', 'Erro ao adicionar filme!')  
     return jsonify(message=result), status
+
 
 
 @movie.route('/delete/<int:movie_id>', methods=['DELETE'])
 def delete_movie(movie_id):
     message, status = MovieController.delete_movie(int(movie_id))
+    if status == 200:
+        flash('error', 'Filme deletado com sucesso!') 
+        return jsonify(message=message), status
+    flash('error', 'Erro ao deletar filme!')  
     return jsonify(message=message), status
 
 
@@ -66,6 +75,8 @@ def get_movie(movie_id):
 def update_movie_form(movie_id):
     result, status = MovieController.update_movie(int(movie_id))
     if status == 200:
+        flash('success', 'Filme atualizado com sucesso!')  
         return redirect(url_for('movie.main_movie'))  
+    flash('error', 'Erro ao atualizar filme!')  
     return render_template('update_movie.html', movie=result)
     

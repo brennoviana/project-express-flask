@@ -21,7 +21,11 @@
             <input type="text" id="genre" name="genre" placeholder="Gênero">
             <button type="submit">Adicionar Filme</button>
         </form>       
-
+        {% for message, category in get_flashed_messages(with_categories=True) %}
+            <div class="alert alert-{{ category }}">
+                {{ message }}
+            </div>
+        {% endfor %}
         <ul>
             {% if movies %}
                 {% for movie in movies %}

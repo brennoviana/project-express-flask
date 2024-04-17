@@ -15,10 +15,7 @@ document.getElementById('addMovieForm').onsubmit = function(e) {
         },
         body: JSON.stringify(formData)
     }).then(response => {
-        if (response.ok) {
-            window.location.reload();
-        }
-        throw new Error('Algo errado aconteceu!');
+        window.location.reload();
     }).catch(error => {
         console.error('Error:', error);
     });

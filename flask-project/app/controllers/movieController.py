@@ -63,6 +63,8 @@ class MovieController:
             
             for field, value in request.form.items():
                 if hasattr(movie, field):
+                    if value == '':
+                        continue
                     setattr(movie, field, value)
 
             db.session.commit()

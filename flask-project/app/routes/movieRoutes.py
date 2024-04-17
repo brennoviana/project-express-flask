@@ -1,5 +1,4 @@
-from flask import Blueprint, render_template
-from sqlalchemy import text
+from flask import Blueprint, render_template, redirect, url_for
 from app.controllers.movieController import MovieController
 from flask import Flask, request, jsonify
 
@@ -54,3 +53,19 @@ def add_movie():
 def delete_movie(movie_id):
     message, status = MovieController.delete_movie(int(movie_id))
     return jsonify(message=message), status
+
+
+@movie.route('form-update/<int:movie_id>', methods=['GET'])
+def get_movie(movie_id):
+    result, status = MovieController.get_movie(int(movie_id)) 
+    if status == 200:
+        return render_template('update_movie.html', movie=result)
+    return jsonify(message=result), status
+
+@movie.route('/update/<int:movie_id>', methods=['POST'])
+def update_movie_form(movie_id):
+    result, status = MovieController.update_movie(int(movie_id))
+    if status == 200:
+        return redirect(url_for('movie.main_movie'))  
+    return render_template('update_movie.html', movie=result)
+    

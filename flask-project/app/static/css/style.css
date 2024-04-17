@@ -81,3 +81,7 @@ ul li {
 .deleteMovieForm{
     display: inline;
 }
+
+#movie_id, button, a button {
+    margin: 0px;
+}

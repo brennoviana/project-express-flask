@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atualizar Filme</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Atualizar Filme</h1>
+    </header>
+
+    <div class="container">
+        <form id="updateMovieForm" method="POST" action="{{ url_for('movie.update_movie_form', movie_id=movie.id) }}">
+            <input type="text" id="name" name="name" placeholder="Nome do Filme" value="{{ movie.name }}" required>
+            <input type="text" id="description" name="description" placeholder="Descrição" value="{{ movie.description }}">
+            <input type="date" id="release_date" name="release_date" value="{{ movie.release_date }}">
+            <input type="text" id="director" name="director" placeholder="Diretor" value="{{ movie.director }}">
+            <input type="text" id="genre" name="genre" placeholder="Gênero" value="{{ movie.genre }}">
+            <button type="submit">Atualizar Filme</button>
+        </form>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

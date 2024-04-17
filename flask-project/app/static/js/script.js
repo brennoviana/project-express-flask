@@ -19,11 +19,36 @@ document.getElementById('addMovieForm').onsubmit = function(e) {
         if (response.ok) {
             return response.json();
         }
-        throw new Error('Something went wrong');
+        throw new Error('Algo errado aconteceu!');
     }).then(data => {
-        console.log('Filme adicionado:', data);
         window.location.reload();
     }).catch(error => {
         console.error('Error:', error);
     });
 };
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('#deleteMovieForm').forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); 
+            const movieId = this.querySelector('#movie_id').value;
+
+            fetch(`/movie/delete/${movieId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }    
+            }).then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('Algo errado aconteceu!');
+            }).then(data => {
+                console.log('Filme deletado:', data);
+                window.location.reload();
+            }).catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    });
+});

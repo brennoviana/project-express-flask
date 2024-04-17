@@ -76,3 +76,7 @@ ul li {
 .actions {
     text-align: right;
 }
+
+#deleteMovieForm{
+    display: inline;
+}

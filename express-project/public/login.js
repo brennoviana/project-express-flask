@@ -19,8 +19,8 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
     }
 
     if (response.ok) {
-        const result = await response.json();
-        document.getElementById('message').textContent = 'Login successful!';
+        window.location.href = 'http://localhost:5000/movies'; 
+
     } else {
         const result = await response.json();
         document.getElementById('message').textContent = 'Error: ' + (result.Error || 'Failed to login.');

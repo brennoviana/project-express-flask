@@ -19,10 +19,10 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
     }
 
     if (response.ok) {
-        window.location.href = 'http://localhost:5000/movies'; 
+        window.location.href = 'http://localhost:5000/movie'; 
 
     } else {
         const result = await response.json();
-        document.getElementById('message').textContent = 'Error: ' + (result.Error || 'Failed to login.');
+        document.getElementById('message').textContent = (result.Error || 'Falha ao efetuar login.');
     }
 });

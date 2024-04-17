@@ -10,17 +10,33 @@
     <header>
         <h1>Lista de Filmes</h1>
     </header>
+
     <div class="container">
+        <form action="/add_movie" method="post">
+            <input type="text" name="name" placeholder="Nome do Filme" required>
+            <input type="text" name="description" placeholder="Descrição">
+            <input type="text" name="release_date" placeholder="Data de Lançamento">
+            <input type="text" name="director" placeholder="Diretor">
+            <input type="text" name="genre" placeholder="Gênero">
+            <button type="submit">Adicionar Filme</button>
+        </form>
+
         <ul>
             {% if movies %}
                 {% for movie in movies %}
-                    <li>
+                    <li class="movie-item">
                         <div class="movie-title">{{ movie.name }}</div>
                         <p class="movie-info">{{ movie.description }}</p>
                         <div class="movie-meta">
-                            Lançamento: {{ movie.release_date|formatdate }} |                            |
+                            Lançamento: {{ movie.release_date|formatdate }} |
                             Diretor: {{ movie.director }} |
                             Gênero: {{ movie.genre }}
+                        </div>
+                        <div class="actions">
+                            <form action="/delete_movie/{{ movie.id }}" method="post" style="display: inline;">
+                                <button type="submit">Deletar</button>
+                            </form>
+                            <a href="/update_movie/{{ movie.id }}"><button>Atualizar</button></a>
                         </div>
                     </li>
                 {% endfor %}
@@ -29,7 +45,7 @@
             {% endif %}
         </ul>
     </div>
-    
+
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

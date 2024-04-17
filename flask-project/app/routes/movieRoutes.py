@@ -3,29 +3,33 @@ from sqlalchemy import text
 from app.controllers.movieController import MovieController
 from flask import Flask, request, jsonify
 
-movies = Blueprint('movies', __name__)
+movie = Blueprint('movie', __name__)
 
-@movies.route('/getAll', methods=['GET'])
+
+@movie.route('/getAll', methods=['GET'])
 def list_movies():
-    movies = MovieController.get_all_movies()
-    movies_list = [
-        {
-            'id': movie.id,
-            'name': movie.name,
-            'description': movie.description,
-            'release_date': movie.release_date.isoformat() if movie.release_date else None,
-            'director': movie.director,
-            'genre': movie.genre
-        } for movie in movies
-    ] if isinstance(movies, list) else []
+    movies, status = MovieController.get_all_movies()
+    
+    if status == 200:  
+        movies_list = [
+            {
+                'id': movie.id,
+                'name': movie.name,
+                'description': movie.description,
+                'release_date': movie.release_date.isoformat() if movie.release_date else None,
+                'director': movie.director,
+                'genre': movie.genre
+            } for movie in movies
+        ]
+        return jsonify(movies_list), 200
+    else:
+        return jsonify({'message': movies}), status
 
-    return jsonify(movies_list)
 
-
-@movies.route('/add', methods=['POST'])
+@movie.route('/add', methods=['POST'])
 def add_movie():
     data = request.json 
-    result = MovieController.add_movie(
+    result, status = MovieController.add_movie(
         name=data['name'],
         description=data.get('description', None),
         release_date=data.get('release_date', None),
@@ -33,4 +37,10 @@ def add_movie():
         genre=data.get('genre', None)
     )
 
-    return jsonify(message=result)
+    return jsonify(message=result), status
+
+
+@movie.route('/delete/<int:movie_id>', methods=['DELETE'])
+def delete_movie(movie_id):
+    message, status = MovieController.delete_movie(movie_id)
+    return jsonify(message=message), status

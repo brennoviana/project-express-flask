@@ -7,10 +7,10 @@ class MovieController:
     def get_all_movies():
         try:
             all_movies = Movie.query.all()
-            return all_movies
+            return all_movies, 200  
         except Exception as e:
-            return f'Error: {str(e)}'
-        
+            return f'Error: {str(e)}', 500 
+
 
     @staticmethod
     def add_movie(name, description, release_date, director, genre):
@@ -24,7 +24,22 @@ class MovieController:
         db.session.add(new_movie)
         try:
             db.session.commit()
-            return f'Filme "{name}" adicionado com sucesso!'
+            return f'Filme "{name}" adicionado com sucesso!', 201
         except Exception as e:
             db.session.rollback()
-            return f'Error: {str(e)}'
+            return f'Error: {str(e)}', 500
+        
+
+    @staticmethod
+    def delete_movie(movie_id):
+        movie = Movie.query.get(movie_id)
+        if not movie:
+            return 'Filme não encontrado!', 404
+
+        try:
+            db.session.delete(movie)
+            db.session.commit()
+            return f'Filme "{movie.name}" deletado com sucesso', 200
+        except Exception as e:
+            db.session.rollback()
+            return f'Error: {str(e)}', 500

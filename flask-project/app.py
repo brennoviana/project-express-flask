@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from dotenv import load_dotenv
+import os
 
 load_dotenv()
 
@@ -10,4 +11,4 @@ def login():
     return render_template('index.html')
 
 if __name__ == '__main__':
-    app.run(port=5000, debug=True)
+    app.run(port=os.getenv('PORT'), debug=True)

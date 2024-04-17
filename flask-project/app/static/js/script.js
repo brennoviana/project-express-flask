@@ -17,38 +17,32 @@ document.getElementById('addMovieForm').onsubmit = function(e) {
         body: JSON.stringify(formData)
     }).then(response => {
         if (response.ok) {
-            return response.json();
+            window.location.reload();
         }
         throw new Error('Algo errado aconteceu!');
-    }).then(data => {
-        window.location.reload();
     }).catch(error => {
         console.error('Error:', error);
     });
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.deleteMovieForm').forEach(form => {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault(); 
-            const movieId = this.querySelector('#movie_id').value;
 
-            fetch(`/movie/delete/${movieId}`, {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json'
-                }    
-            }).then(response => {
-                if (response.ok) {
-                    return response.json();
-                }
-                throw new Error('Algo errado aconteceu!');
-            }).then(data => {
-                console.log('Filme deletado:', data);
+document.querySelectorAll('.deleteMovieForm').forEach(form => {
+    form.addEventListener('submit', function(e) {
+        e.preventDefault(); 
+        const movieId = this.querySelector('#movie_id').value;
+
+        fetch(`/movie/delete/${movieId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }    
+        }).then(response => {
+            if (response.ok) {
                 window.location.reload();
-            }).catch(error => {
-                console.error('Error:', error);
-            });
+            }
+            throw new Error('Algo errado aconteceu!');
+        }).catch(error => {
+            console.error('Error:', error);
         });
     });
 });

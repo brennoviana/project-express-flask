@@ -61,11 +61,10 @@ class MovieController:
             if not movie:
                 return "Filme não encontrado", 404
             
-            movie.name = request.form['name']
-            movie.description = request.form['description']
-            movie.release_date = request.form['release_date']
-            movie.director = request.form['director']
-            movie.genre = request.form['genre']
+            for field, value in request.form.items():
+                if hasattr(movie, field):
+                    setattr(movie, field, value)
+
             db.session.commit()
 
             return f'Filme "{movie.name}" alterado com sucesso!', 200

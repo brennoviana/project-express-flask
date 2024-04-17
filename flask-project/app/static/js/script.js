@@ -28,7 +28,7 @@ document.getElementById('addMovieForm').onsubmit = function(e) {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('#deleteMovieForm').forEach(form => {
+    document.querySelectorAll('.deleteMovieForm').forEach(form => {
         form.addEventListener('submit', function(e) {
             e.preventDefault(); 
             const movieId = this.querySelector('#movie_id').value;

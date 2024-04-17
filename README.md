@@ -12,10 +12,10 @@ Este é um projeto para a primeira prova da disciplina de Banco de Dados Não Re
 1. Na raiz do projeto, execute o Docker Compose:
 ```bash
     docker-compose up
-    cd express-project
 ```
 2. Configure o projeto Express:
 ```bash
+    cd express-project
     npm install
     npm run start
     cd ..

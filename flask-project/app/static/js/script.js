@@ -1,6 +1,5 @@
 document.getElementById('addMovieForm').onsubmit = function(e) {
     e.preventDefault();
-    console.log("aqui")
     const formData = {
         name: document.getElementById('name').value,
         description: document.getElementById('description').value,

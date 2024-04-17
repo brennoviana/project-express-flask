@@ -38,7 +38,7 @@ def list_movies():
 
 @movie.route('/add', methods=['POST'])
 def add_movie():
-    data = request.json 
+    data = request.get_json()
     result, status = MovieController.add_movie(
         name=data['name'],
         description=data.get('description', None),

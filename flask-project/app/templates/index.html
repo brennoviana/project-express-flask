@@ -12,14 +12,14 @@
     </header>
 
     <div class="container">
-        <form action="/add_movie" method="post">
-            <input type="text" name="name" placeholder="Nome do Filme" required>
-            <input type="text" name="description" placeholder="Descrição">
-            <input type="text" name="release_date" placeholder="Data de Lançamento">
-            <input type="text" name="director" placeholder="Diretor">
-            <input type="text" name="genre" placeholder="Gênero">
+        <form id="addMovieForm">
+            <input type="text" id="name" name="name" placeholder="Nome do Filme" required>
+            <input type="text" id="description" name="description" placeholder="Descrição">
+            <input type="date" id="release_date" name="release_date" placeholder="Data de Lançamento">
+            <input type="text" id="director" name="director" placeholder="Diretor">
+            <input type="text" id="genre" name="genre" placeholder="Gênero">
             <button type="submit">Adicionar Filme</button>
-        </form>
+        </form>       
 
         <ul>
             {% if movies %}

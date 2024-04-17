@@ -5,9 +5,22 @@ from flask import Flask, request, jsonify
 
 movies = Blueprint('movies', __name__)
 
-@movies.route('/')
-def home():
-    return render_template('index.html')
+@movies.route('/getAll', methods=['GET'])
+def list_movies():
+    movies = MovieController.get_all_movies()
+    movies_list = [
+        {
+            'id': movie.id,
+            'name': movie.name,
+            'description': movie.description,
+            'release_date': movie.release_date.isoformat() if movie.release_date else None,
+            'director': movie.director,
+            'genre': movie.genre
+        } for movie in movies
+    ] if isinstance(movies, list) else []
+
+    return jsonify(movies_list)
+
 
 @movies.route('/add', methods=['POST'])
 def add_movie():

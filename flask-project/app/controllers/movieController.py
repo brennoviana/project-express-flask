@@ -4,8 +4,13 @@ from datetime import date
 
 class MovieController:
     @staticmethod
-    def get_movie():
-        return "Movies"
+    def get_all_movies():
+        try:
+            all_movies = Movie.query.all()
+            return all_movies
+        except Exception as e:
+            return f'Error: {str(e)}'
+        
 
     @staticmethod
     def add_movie(name, description, release_date, director, genre):

@@ -49,6 +49,9 @@ def add_movie():
     if status == 201:
         flash('success', 'Filme adicionado com sucesso!')  
         return jsonify(message=result), status
+    elif status == 409:
+        flash('error', 'Filme ja existe!')  
+        return jsonify(message=result), status
     flash('error', 'Erro ao adicionar filme!')  
     return jsonify(message=result), status
 

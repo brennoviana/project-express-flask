@@ -2,6 +2,9 @@ from app import db
 from app.models.movieModel import Movie
 from datetime import date
 from flask import request
+from sqlalchemy.exc import IntegrityError
+from psycopg2.errors import UniqueViolation
+
 
 class MovieController:
     @staticmethod
@@ -26,8 +29,10 @@ class MovieController:
         try:
             db.session.commit()
             return f'Filme "{name}" adicionado com sucesso!', 201
-        except Exception as e:
+        except IntegrityError as e:
             db.session.rollback()
+            if isinstance(e.orig, UniqueViolation):
+                return f'Error: {str(e)}', 409
             return f'Error: {str(e)}', 500
         
 

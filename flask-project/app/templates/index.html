@@ -46,7 +46,7 @@
                                 <input type="hidden" id="movie_id" name="movie_id" value="{{ movie.id }}">
                                 <button type="submit">Deletar</button>
                             </form>
-                            <a href="{{ url_for('movie.get_movie', movie_id=movie.id) }}"><button>Atualizar</button></a>
+                            <a href="{{ url_for('movie.update_movie_form', movie_id=movie.id) }}"><button>Atualizar</button></a>
                         </div>
                     </li>
                 {% endfor %}

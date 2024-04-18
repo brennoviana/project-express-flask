@@ -64,19 +64,17 @@ def delete_movie(movie_id):
     return jsonify(message=message), status
 
 
-@movie.route('form-update/<int:movie_id>', methods=['GET'])
-def get_movie(movie_id):
-    result, status = MovieController.get_movie(int(movie_id)) 
-    if status == 200:
-        return render_template('update_movie.html', movie=result)
-    return jsonify(message=result), status
-
-@movie.route('/update/<int:movie_id>', methods=['POST'])
+@movie.route('form-update/<int:movie_id>', methods=['GET', 'POST'])
 def update_movie_form(movie_id):
+    if request.method == "GET":
+        result, status = MovieController.get_movie(int(movie_id)) 
+        if status == 200:
+            return render_template('update_movie.html', movie=result)
+        return jsonify(message=result), status
+
     result, status = MovieController.update_movie(int(movie_id))
     if status == 200:
         flash('success', 'Filme atualizado com sucesso!')  
         return redirect(url_for('movie.main_movie'))  
     flash('error', 'Erro ao atualizar filme!')  
     return render_template('update_movie.html', movie=result)
-    

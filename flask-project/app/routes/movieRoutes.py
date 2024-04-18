@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, redirect, url_for, flash
 from app.controllers.movieController import MovieController
-from flask import Flask, request, jsonify
+from flask import request, jsonify
 
 movie = Blueprint('movie', __name__)
 

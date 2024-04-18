@@ -1,4 +1,4 @@
-from app.database import db
+from app import db
 from app.models.movieModel import Movie
 from datetime import date
 from flask import request

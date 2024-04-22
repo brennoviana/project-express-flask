@@ -32,6 +32,7 @@ Este é um projeto para a primeira prova da disciplina de Banco de Dados Não Re
 ## Instruções das Rotas
 
 - Login: Acesse localhost:3000 para fazer login.
+- Página Flask: Acesse localhost:5000/movie/ para ver a página dos filmes.
 - Cadastro de Usuários: Para cadastrar usuários, utilize a rota http://localhost:3000/users/.
 
 ## Certifique-se de que:

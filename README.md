@@ -1,6 +1,6 @@
 # project-express-flask
 
-Este é um projeto utilizando as ferramentas Docker Compose para orquestrar serviços, Express.js e Flask.
+Este é um projeto utilizando a ferramenta Docker Compose para orquestrar serviços, Express.js e Flask.
 
 ## Pré-requisitos
 - Docker e Docker Compose instalados

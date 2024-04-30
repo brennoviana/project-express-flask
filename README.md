@@ -1,6 +1,6 @@
 # project-express-flask
 
-Este é um projeto para a primeira prova da disciplina de Banco de Dados Não Relacional. Ele utiliza Docker Compose para orquestrar serviços Express.js e Flask.
+Este é um projeto utilizando as ferramentas Docker Compose para orquestrar serviços, Express.js e Flask.
 
 ## Pré-requisitos
 - Docker e Docker Compose instalados
